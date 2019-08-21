@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
+use Carbon\Carbon;
+use App\Personal;
 use App\User;
+use App\Producto;
+use App\Venta;
 use Illuminate\Http\Request;
 
-class UsuariosController extends Controller
+class ConsultaController extends Controller
 {
-    function __construct() {
-        $this->middleware([
-            'auth', 'roles:Administrador,Vendedor,Consulta'
-        ]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +18,33 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return view('usuarios.index', [
+        //
+        return view('consultas.indexPersonal', [
+            'personals' => Personal::latest()->paginate(3)
+        ]);
+    }
+
+    public function index1()
+    {
+        //
+        return view('consultas.indexProductos', [
+            'productos' => Producto::latest()->paginate(3)
+        ]);
+    }
+
+    public function index2()
+    {
+        //
+        return view('consultas.indexUsuarios', [
             'usuarios' => User::latest()->paginate(3)
+        ]);
+    }
+
+    public function index3()
+    {
+        //
+        return view('consultas.indexVentas', [
+            'ventas' => Venta::latest()->paginate(3)
         ]);
     }
 

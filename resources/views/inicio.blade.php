@@ -15,7 +15,7 @@
 
     @section('contenido')
     <div class="container">    
-        <h1>Página de inicio</h1>
+        <h1 class="display-1">TIENDA AMIGA</h1>
         Bienvenid@ {{ $nombre ?? 'Invitado' }}
     </div>
     @endsection

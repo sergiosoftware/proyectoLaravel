@@ -9,6 +9,9 @@ use App\Http\Requests\CreateClienteRequest;
 
 class ClienteController extends Controller
 {
+    function __construct() {
+        $this->middleware('auth', ['except' => ['create', 'store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +51,8 @@ class ClienteController extends Controller
             'telefonos' => $request->input('telefonos'),
             'direccion' => $request->input('direcion'),
             'con_credito' => $request->input('con_credito'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         return redirect()->route('cliente.index');
     }

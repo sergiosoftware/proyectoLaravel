@@ -7,37 +7,77 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-        {{-- <li class="nav-item active">
-            <a class="nav-link" href="{{ route('inicio') }}">Inicio <span class="sr-only">(current)</span></a>
-        </li> --}}
         <!-- si existe un usuario autenticado actualmente -->
         @if (auth()->check())
-        {{-- <li class="nav-item active">
-            <a class="nav-link" href="{{ route('producto.index') }}">Productos</a>
-        </li> --}}
             @if (auth()->user()->hasRoles(['Administrador']))
+            <div class="btn-group-vertical">  
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('producto.index') }}">
-                        Productos
-                    </a>
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('producto.index') }}">Productos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('cliente.index') }}">
-                        Clientes
-                    </a>
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('venta.index') }}">Ventas</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('cliente.index') }}">Clientes</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('personal.index') }}">Personal</a>
+                </li>
+            </div>
             @endif
             @if (auth()->user()->hasRoles(['Vendedor']))
+            <div class="btn-group-vertical">            
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('usuarios.index') }}">Ventas</a>
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('venta.index') }}">Ventas</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaPersonal.index') }}">Consultar personal</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaProducto.index') }}">Consultar productos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaUsuario.index') }}">Consultar Usuarios</a>
+                </li>
+            </div>
+            @endif
+            @if (auth()->user()->hasRoles(['Consulta']))
+            <div class="btn-group-vertical">  
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaPersonal.index') }}">Consultar personal</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaProducto.index') }}">Consultar productos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaVenta.index') }}">Consultar Ventas</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-success btn-sm" href="{{ route('consultaUsuario.index') }}">Consultar Usuarios</a>
+                </li>
+            </div>
             @endif
         @endif
         <!-- sólo si es un usuario invitado -->
         @if (auth()->guest())
-        <li class="nav-item active">
-            <a href="{{ route('login') }}">Autenticarse</a>
-        </li>
+        <div class="btn-group-vertical">  
+            <li class="nav-item active">
+                <a class="btn btn-outline-success btn-sm" href="{{ route('consultaPersonal.index') }}"> Consultar personal</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-outline-success btn-sm" href="{{ route('consultaProducto.index') }}">Consultar productos</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-outline-success btn-sm" href="{{ route('consultaVenta.index') }}">Consultar Ventas</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-outline-success btn-sm" href="{{ route('consultaUsuario.index') }}"> Consultar Usuarios</a>
+            </li>
+            <br>
+            <li class="nav-item active">
+                <a class="btn btn-warning btn-lg" href="{{ route('login') }}">Autenticarse</a>
+            </li>
+        </div>
         @else 
         <li class="dropdown">
             <a class="nav-link dropdown-toggle" 
@@ -46,9 +86,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li class="nav-item">
-                    <li><a class="dropdown-item" 
-                            href="{{ route('logout') }}">Cerrar sesión
-                    </a><li>
+                    <li>
+                        <a class="dropdown-item btn-lg" href="{{ route('logout') }}">Cerrar sesión</a>
+                    <li>
                 </li>
             </ul>
         </li>

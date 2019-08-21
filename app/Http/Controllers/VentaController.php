@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use Carbon\Carbon;
+use App\Venta;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateVentaRequest;
 
 class VentaController extends Controller
 {
@@ -14,6 +17,9 @@ class VentaController extends Controller
     public function index()
     {
         //
+        return view('ventas.index', [
+            'ventas' => Venta::latest()->paginate(3)
+        ]);
     }
 
     /**
@@ -24,6 +30,7 @@ class VentaController extends Controller
     public function create()
     {
         //
+        return view('ventas.crear');
     }
 
     /**
@@ -32,9 +39,18 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CreateVentaRequest $request) {
+        // Guardar la venta
+        DB::table('ventas')->insert([
+        'fecha_venta' => $request->input('fecha_venta'),
+        'total_credito' => $request->input('total_credito'),
+        'total_contado' => $request->input('total_contado'),
+        'id_cliente' => $request->input('id_cliente'),
+        'id_vendedor' => $request->input('id_vendedor'),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->route('venta.index');
     }
 
     /**
@@ -46,6 +62,9 @@ class VentaController extends Controller
     public function show($id)
     {
         //
+        $venta = DB::table('ventas')->where('id_venta',
+                            $id)->first();
+        return view('ventas.show', compact('venta'));
     }
 
     /**
@@ -57,6 +76,8 @@ class VentaController extends Controller
     public function edit($id)
     {
         //
+        $venta = DB::table('ventas')->where('id_venta', $id)->first();
+        return view('ventas.editar', compact('venta'));
     }
 
     /**
@@ -69,6 +90,14 @@ class VentaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        DB::table('ventas')->where('id_venta',$id)->update([
+            'fecha_venta' => $request->input('fecha_venta'),
+            'total_credito' => $request->input('total_credito'),
+            'total_contado' => $request->input('total_contado'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->route('venta.index');
     }
 
     /**
@@ -80,5 +109,7 @@ class VentaController extends Controller
     public function destroy($id)
     {
         //
+        DB::table('ventas')->where('id_venta', $id)->delete();
+        return redirect()->route('venta.index');
     }
 }

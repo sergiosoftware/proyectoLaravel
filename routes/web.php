@@ -14,9 +14,14 @@
 Route::view('/', 'inicio', ['nombre' => 'Sergio Andres'])->name('inicio');
  
 // acceso a subcarpeta: proyectoFinal.cc/ventas
-Route::get('ventas', function () {  // subruta
-    return 'Esta es la página de ventas';
-});
+Route::get('ventas', 'VentaController@index')->name('venta.index');
+Route::get('/ventas/crear', 'VentaController@create')->name('venta.create');
+Route::post('ventas', 'VentaController@store')->name('venta.store');
+Route::get('ventas/{id}', 'VentaController@show')->name('buscar-venta');
+Route::get('ventas/{id}/editar', 'VentaController@edit')->name('editar-venta');
+Route::resource('venta', 'VentaController');
+Route::delete('ventas/{id}', 'VentaController@destroy')->name('eliminar-venta');
+
 // acceso a subcarpeta: proyectoFinal.cc/detalles_devoluciones_ventas
 Route::get('detalles_devoluciones_ventas', function () {  // subruta
     return 'Esta es la página de detalles devoluciones ventas';
@@ -35,9 +40,14 @@ Route::resource('cliente', 'ClienteController');
 Route::delete('clientes/{id}', 'ClienteController@destroy')->name('eliminar-cliente');
 
 // acceso a subcarpeta: proyectoFinal.cc/personal
-Route::get('personal', function () {  // subruta
-    return 'Esta es la página de personal';
-});
+Route::get('personals', 'PersonalController@index')->name('personal.index');
+Route::get('/personals/crear', 'PersonalController@create')->name('personal.create');
+Route::post('personals', 'PersonalController@store')->name('personal.store');
+Route::get('personals/{id}', 'PersonalController@show')->name('buscar-personal');
+Route::get('personals/{id}/editar', 'PersonalController@edit')->name('editar-personal');
+Route::resource('personal', 'PersonalController');
+Route::delete('personals/{id}', 'PersonalController@destroy')->name('eliminar-personal');
+
 // acceso a subcarpeta: proyectoFinal.cc/categorias_productos
 Route::get('categorias_productos', function () {  // subruta
     return 'Esta es la página de categorias productos';
@@ -101,3 +111,9 @@ Route::resource('usuarios', 'UsuariosController');
 Route::get('roles-usuarios', function () {
     return \App\Role::with('user')->get();
  });
+
+//Usuarios de consulta
+Route::get('consultaPersonal', 'ConsultaController@index')->name('consultaPersonal.index');
+Route::get('consultaProducto', 'ConsultaController@index1')->name('consultaProducto.index');
+Route::get('consultaUsuario', 'ConsultaController@index2')->name('consultaUsuario.index');
+Route::get('consultaVenta', 'ConsultaController@index3')->name('consultaVenta.index');
