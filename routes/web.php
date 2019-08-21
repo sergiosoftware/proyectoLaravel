@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+DB::listen(function ($query) {
+    echo "<pre>{ [$query->time] - $query->sql }</pre>";
+ });
+ 
 Route::view('/', 'inicio', ['nombre' => 'Sergio Andres'])->name('inicio');
  
 // acceso a subcarpeta: proyectoFinal.cc/ventas

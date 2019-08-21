@@ -24,7 +24,7 @@
                 @empty
                     <li>No hay personal para mostrar</li>
                 @endforelse
-                {{ $personals->links() }}
+                {{ $personals->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Personal no definido</li>
             @endisset

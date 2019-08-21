@@ -42,7 +42,8 @@
                 @empty
                     <li>No hay clientes para mostrar</li>
                 @endforelse
-                {{ $clientes->links() }}
+                {{-- {{ $clientes->links() }} --}}
+                {{ $clientes->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Catálogo no definido</li>
             @endisset

@@ -4,7 +4,7 @@
 @section('contenido')
 <div class="container">    
     <h1>Personal registrado</h1>
-    <a href="{{ route('personal.create') }}">Agregar personal</a>
+    <a class="btn btn-outline-danger" href="{{ route('personal.create') }}">Agregar personal</a>
     <ul class="navbar-nav mr-auto">
         <table class="table table-striped">
             <thead>
@@ -44,7 +44,7 @@
                 @empty
                     <li>No hay personal para mostrar</li>
                 @endforelse
-                {{ $personals->links() }}
+                {{ $personals->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Personal no definido</li>
             @endisset

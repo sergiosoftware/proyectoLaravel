@@ -26,7 +26,7 @@
                 @empty
                     <li>No hay ventas para mostrar</li>
                 @endforelse
-                {{ $ventas->links() }}
+                {{ $ventas->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Listado no definido</li>
             @endisset

@@ -4,7 +4,7 @@
 @section('contenido')
 <div class="container">    
     <h1>Catálogo de productos</h1>
-    <a href="{{ route('producto.create') }}">Agregar producto</a>
+    <a class="btn btn-outline-danger" href="{{ route('producto.create') }}">Agregar producto</a>
     <ul class="navbar-nav mr-auto">
         <table class="table table-striped">
             <thead>
@@ -46,7 +46,7 @@
                 @empty
                     <li>No hay productos para mostrar</li>
                 @endforelse
-                {{ $productos->links() }}
+                {{ $productos->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Catálogo no definido</li>
             @endisset

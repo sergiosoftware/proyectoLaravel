@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Cliente;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateClienteRequest;
+use Illuminate\Support\Facades\Cache;
 
 class ClienteController extends Controller
 {

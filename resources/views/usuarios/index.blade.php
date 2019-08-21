@@ -5,7 +5,7 @@
 @section('contenido')
 <div class="container"> 
 	<h3>Todos los usuarios</h3>
-    <a href="{{ route('usuarios.create') }}">Crear nuevo usuario</a>
+    <a class="btn btn-outline-danger" href="{{ route('usuarios.create') }}">Crear nuevo usuario</a>
     <ul class="navbar-nav mr-auto">
         <table class="table table-stripped">
             <thead>
@@ -47,7 +47,7 @@
                         </td>
                     </tr>
                 @endforeach
-                {{ $usuarios->links() }}
+                {{ $usuarios->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             </tbody>
         </table>
     </ul>

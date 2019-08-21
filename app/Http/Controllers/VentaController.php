@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Venta;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateVentaRequest;
+use Illuminate\Support\Facades\Cache;
 
 class VentaController extends Controller
 {

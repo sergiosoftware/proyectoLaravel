@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Personal;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePersonalRequest;
+use Illuminate\Support\Facades\Cache;
 
 class PersonalController extends Controller
 {

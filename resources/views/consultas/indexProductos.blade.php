@@ -26,7 +26,7 @@
                 @empty
                     <li>No hay productos para mostrar</li>
                 @endforelse
-                {{ $productos->links() }}
+                {{ $productos->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             @else
                 <li>Catálogo no definido</li>
             @endisset

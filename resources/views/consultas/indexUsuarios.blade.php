@@ -23,7 +23,7 @@
                         <td>{{ $usuario->role->nombre}}</td>
                     </tr>
                 @endforeach
-                {{ $usuarios->links() }}
+                {{ $usuarios->appends(request()->query())->links('pagination::simple-bootstrap-4') }}
             </tbody>
         </table>
     </ul>

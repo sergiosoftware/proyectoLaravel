@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductoRequest;
+use Illuminate\Support\Facades\Cache;
 
 class ProductoController extends Controller
 {
@@ -94,6 +95,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request);
         DB::table('productos')->where('id_producto',$id)->update([
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
