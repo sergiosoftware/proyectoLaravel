@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="container">
-        <h2 class="display-3">Agregar nuevo producto</h2> 
+        <h2 class="display-3">BIENVENIDO</h2> 
     
         <form class="form-inline" method="POST" action="login">
             @csrf

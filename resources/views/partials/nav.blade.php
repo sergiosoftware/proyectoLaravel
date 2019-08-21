@@ -7,9 +7,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        {{-- <li class="nav-item active">
             <a class="nav-link" href="{{ route('inicio') }}">Inicio <span class="sr-only">(current)</span></a>
-        </li>
+        </li> --}}
         <!-- si existe un usuario autenticado actualmente -->
         @if (auth()->check())
         {{-- <li class="nav-item active">
@@ -19,6 +19,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('producto.index') }}">
                         Productos
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('cliente.index') }}">
+                        Clientes
                     </a>
                 </li>
             @endif

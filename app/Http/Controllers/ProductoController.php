@@ -22,7 +22,7 @@ class ProductoController extends Controller
         // $catalogo = \DB::table('productos')->get();
         // return view('productos.index', compact('catalogo'));
         return view('productos.index', [
-            'productos' => Producto::latest()->paginate(5)
+            'productos' => Producto::latest()->paginate(3)
         ]);
     }
 
@@ -33,8 +33,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        // return view('productos.crear');
-        return view('producto.create');
+        return view('productos.crear');
     }
 
     /**
@@ -56,9 +55,8 @@ class ProductoController extends Controller
         'updated_at' => Carbon::now(),
         'id_presentacion_producto' => $request->input('id_presentacion_producto'),
         'id_categoria_producto' => $request->input('id_categoria_producto'),
-    ]);
-    // redireccionar. Más adelante se le pedirá que cambie esto
-    return redirect()->route('producto.index');
+        ]);
+        return redirect()->route('producto.index');
     }
 
 

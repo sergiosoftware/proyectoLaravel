@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'inicio', ['nombre' => 'Sergio AndrÃ©s'])->name('inicio');
+Route::view('/', 'inicio', ['nombre' => 'Sergio Andres'])->name('inicio');
  
 // acceso a subcarpeta: proyectoFinal.cc/ventas
 Route::get('ventas', function () {  // subruta
@@ -26,9 +26,14 @@ Route::get('pagos_clientes', function () {  // subruta
     return 'Esta es la página de pagos clientes';
 });
 // acceso a subcarpeta: proyectoFinal.cc/clientes
-Route::get('clientes', function () {  // subruta
-    return 'Esta es la página de clientes';
-});
+Route::get('clientes', 'ClienteController@index')->name('cliente.index');
+Route::get('/clientes/crear', 'ClienteController@create')->name('cliente.create');
+Route::post('clientes', 'ClienteController@store')->name('cliente.store');
+Route::get('clientes/{id}', 'ClienteController@show')->name('buscar-cliente');
+Route::get('clientes/{id}/editar', 'ClienteController@edit')->name('editar-cliente');
+Route::resource('cliente', 'ClienteController');
+Route::delete('clientes/{id}', 'ClienteController@destroy')->name('eliminar-cliente');
+
 // acceso a subcarpeta: proyectoFinal.cc/personal
 Route::get('personal', function () {  // subruta
     return 'Esta es la página de personal';
@@ -57,6 +62,7 @@ Route::get('productos/{id}', 'ProductoController@show')->name('buscar-producto')
 Route::get('productos/{id}/editar', 'ProductoController@edit')->name('editar-producto');
 Route::resource('producto', 'ProductoController');
 Route::delete('productos/{id}', 'ProductoController@destroy')->name('eliminar-producto');
+
 // acceso a subcarpeta: proyectoFinal.cc/detalles_ventas
 Route::get('detalles_ventas', function () {  // subruta
     return 'Esta es la página de detalles ventas';
